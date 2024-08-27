@@ -1,1 +1,7 @@
 @import url("../node_modules/modern-normalize/");
+
+div.default {
+  background-image: url("../media/bg.jpg");
+  height: 100svh;
+  width: 100svw;
+}
