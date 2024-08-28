@@ -102,7 +102,7 @@ class Title {
         const titleElem = document.createElement("h1");
         const subTitleElem = document.createElement("h3");
         const dateElem = document.createElement("h2");
-        const descElem = document.createElement("h2");
+        const descElem = document.createElement("h4");
 
         titleElem.textContent = title;
         subTitleElem.textContent = subTitle;
