@@ -1,7 +1,15 @@
 @import url("../node_modules/modern-normalize/");
 
+.moderustic-normal {
+  font-family: "Moderustic", sans-serif;
+  font-optical-sizing: "auto";
+  font-weight: "600";
+  font-style: "normal";
+}
+
 body {
   background-color: black;
+  font-family: "Moderustic";
 }
 
 div.default {
