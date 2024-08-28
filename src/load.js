@@ -19,7 +19,7 @@ export function loadDefault() {
     document.body.appendChild(main);
 }
 
-const SearchDiv = (function() {
+export const SearchDiv = (function() {
     const searchDiv = document.createElement("div");
     const searchInput = document.createElement("input");
     const searchButton = document.createElement("button");
@@ -33,22 +33,25 @@ const SearchDiv = (function() {
         searchDiv.appendChild(searchButton);
     }
 
-    function loadSmall(elem) {
+    function loadSmall (elem) {
         console.log(searchDiv)
         searchDiv.style.fontSize = "1rem";
         elem.appendChild(searchDiv);
     }
-    function loadLarge(elem) {
+    function loadLarge (elem) {
         const div = searchDiv
         div.style.fontSize = "2rem";
         elem.appendChild(div);
     }
-    function getBtn() {
+    function getBtn () {
         return searchButton
+    }
+    function getInputValue () {
+        return searchInput.value
     }
     load()
 
-    return { loadSmall, loadLarge, getBtn }
+    return { loadSmall, loadLarge, getBtn, getInputValue }
 })()
 
 loadDefault()
