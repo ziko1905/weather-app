@@ -7,11 +7,13 @@ body {
 div.default {
   display: grid;
   position: fixed;
+  align-content: start;
+  justify-content: center;
+  justify-items: center;
 
   width: 100svw;
   height: 100svh;
-  align-content: center;
-  justify-content: center;
+  margin-top: 20vh;
 }
 
 img.bg {
@@ -24,4 +26,23 @@ img.bg {
 h1.title {
   color: white;
   font-size: 4rem;
+  margin: 0;
+}
+
+.search-div {
+  display: flex;
+  gap: 20px;
+  margin-top: 5vh;
+}
+
+.search-btn {
+  font-size: 0.8em;
+  padding: 0.5em;
+  border: none;
+  background-color: white;
+  border-radius: 30px;
+}
+
+.search-btn:active {
+  background-color: rgb(180, 180, 180);
 }
