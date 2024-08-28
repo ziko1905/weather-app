@@ -7,4 +7,12 @@ module.exports = merge(common, {
   devServer: {
     static: "./dist",
   },
+  module: {
+    rules: [
+      {
+        test: /\.(json)$/i,
+        type: "asset/resource",
+      },
+    ]
+  }
 });

@@ -19,7 +19,6 @@ class GetData {
     }
     getMain () {
         const address = this.data.resolvedAddress.split(", ") 
-        console.log(address);
         const title = address[0];
         const subTitle = address.slice(1).join(", ");
         const displayDate = format(new Date(), "do MMMM, yyyy")
