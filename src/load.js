@@ -1,4 +1,30 @@
-import bgImg from"../media/bg.jpg"
+import bgImg from "../media/bg.jpg"
+import cloudyBg from "../media/cloudy.jpg"
+import clearBg from "../media/clear.jpg"
+import rainyBg from "../media/rain.jpg"
+import snowyBg from "../media/snowing.jpg"
+import windyBg from "../media/windy.jpg"
+import fogyBg from "../media/fogy.jpg"
+
+class Theme {
+    constructor (url) {
+        this.url = url
+    }
+    getUrl () {
+        return this.url
+    }
+}
+
+const THEMES_LIST = {
+    "snow": new Theme(snowyBg),
+    "rain": new Theme(rainyBg),
+    "fog": new Theme(fogyBg),
+    "wind": new Theme(windyBg),
+    "cloudy": new Theme(cloudyBg),
+    "clear": new Theme(clearBg),
+}
+
+console.log(THEMES_LIST.cloudy)
 
 export function loadDefault() {
     document.body.textContent = "";
