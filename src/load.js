@@ -46,12 +46,15 @@ export const SearchDiv = (function() {
     function getBtn () {
         return searchButton
     }
+    function getInput () {
+        return searchInput
+    }
     function getInputValue () {
         return searchInput.value
     }
     load()
 
-    return { loadSmall, loadLarge, getBtn, getInputValue }
+    return { loadSmall, loadLarge, getBtn, getInput, getInputValue }
 })()
 
 loadDefault()
