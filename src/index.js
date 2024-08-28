@@ -1,6 +1,5 @@
 import "./styles.css";
 import { getWeather } from "./external";
-import { loadDefault } from "./load";
+import { SearchDiv } from "./load.js"
 
 getWeather("bedenica");
-loadDefault();

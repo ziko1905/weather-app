@@ -19,12 +19,11 @@ export function loadDefault() {
     document.body.appendChild(main);
 }
 
-class SearchDiv {
-    static load() {
-        const searchDiv = document.createElement("div");
-        const searchInput = document.createElement("input");
-        const searchButton = document.createElement("button");
-
+const SearchDiv = (function() {
+    const searchDiv = document.createElement("div");
+    const searchInput = document.createElement("input");
+    const searchButton = document.createElement("button");
+    function load() {
         searchDiv.className = "search-div";
         searchInput.className = "search-inp";
         searchButton.className = "search-btn";
@@ -32,17 +31,24 @@ class SearchDiv {
 
         searchDiv.appendChild(searchInput);
         searchDiv.appendChild(searchButton);
-        return searchDiv
     }
 
-    static loadSmall(elem) {
-        const div = this.load()
-        div.style.fontSize = "1rem";
-        elem.appendChild(div);
+    function loadSmall(elem) {
+        console.log(searchDiv)
+        searchDiv.style.fontSize = "1rem";
+        elem.appendChild(searchDiv);
     }
-    static loadLarge(elem) {
-        const div = this.load()
+    function loadLarge(elem) {
+        const div = searchDiv
         div.style.fontSize = "2rem";
         elem.appendChild(div);
     }
-}
+    function getBtn() {
+        return searchButton
+    }
+    load()
+
+    return { loadSmall, loadLarge, getBtn }
+})()
+
+loadDefault()
