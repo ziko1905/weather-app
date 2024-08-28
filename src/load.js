@@ -45,6 +45,18 @@ export function loadDefault() {
     document.body.appendChild(main);
 }
 
+export function loadWeather (theme, titleData, tempData, daysData) {
+    document.body.textContent = "";
+    const themeImg = document.createElement("img");
+    const content = document.createElement("div");
+
+    themeImg.src = THEMES_LIST[theme].getUrl()
+    themeImg.className = "bg";
+    content.className = "content"
+
+    document.body.appendChild(themeImg);
+}
+
 export const SearchDiv = (function() {
     const searchDiv = document.createElement("div");
     const searchInput = document.createElement("input");
