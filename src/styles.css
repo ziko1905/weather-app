@@ -54,3 +54,9 @@ h1.title {
 .search-btn:active {
   background-color: rgb(180, 180, 180);
 }
+
+div.content {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+}

@@ -1,6 +1,6 @@
 import "./styles.css";
 import { getWeather } from "./external";
-import { SearchDiv } from "./load.js"
+import { loadWeather, SearchDiv } from "./load.js"
 import { format } from "date-fns";
 
 const NEXT_DAYS_NUM = 5;
@@ -13,7 +13,7 @@ SearchDiv.getBtn().addEventListener("click", () => loadingController(SearchDiv.g
 async function loadingController (obj) {
     const data = await getWeather(obj);
     const obtained = new GetData(data);
-    console.log(obtained.getTheme());
+    loadWeather(obtained.getTheme(), obtained.getMain(), obtained.getTemp(), obtained.getDays(NEXT_DAYS_NUM));
 }
 
 class GetData {

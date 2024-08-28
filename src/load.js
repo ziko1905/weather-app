@@ -24,9 +24,7 @@ const THEMES_LIST = {
     "clear": new Theme(clearBg),
 }
 
-console.log(THEMES_LIST.cloudy)
-
-export function loadDefault() {
+export function loadDefault () {
     document.body.textContent = "";
     const main = document.createElement("div");
     const bg = document.createElement("img");
@@ -49,12 +47,15 @@ export function loadWeather (theme, titleData, tempData, daysData) {
     document.body.textContent = "";
     const themeImg = document.createElement("img");
     const content = document.createElement("div");
+    const title = new Title(titleData.title, titleData.subTitle, titleData.displayDate, titleData.description);
 
     themeImg.src = THEMES_LIST[theme].getUrl()
     themeImg.className = "bg";
     content.className = "content"
 
+    content.appendChild(title.elem);
     document.body.appendChild(themeImg);
+    document.body.appendChild(content);
 }
 
 export const SearchDiv = (function() {
@@ -94,5 +95,30 @@ export const SearchDiv = (function() {
 
     return { loadSmall, loadLarge, getBtn, getInput, getInputValue }
 })()
+
+class Title {
+    constructor (title, subTitle, date, desc) {
+        this.div = document.createElement("div")
+        const titleElem = document.createElement("h1");
+        const subTitleElem = document.createElement("h3");
+        const dateElem = document.createElement("h2");
+        const descElem = document.createElement("h2");
+
+        titleElem.textContent = title;
+        subTitleElem.textContent = subTitle;
+        dateElem.textContent = date;
+        descElem.textContent = desc;
+
+        this.div.appendChild(titleElem);
+        this.div.appendChild(subTitleElem);
+        this.div.appendChild(dateElem);
+        this.div.appendChild(descElem);
+        this.div.className = "title-div"
+    }
+    get elem() {
+        return this.div
+    }
+}
+
 
 loadDefault()
