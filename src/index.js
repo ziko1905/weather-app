@@ -11,6 +11,7 @@ SearchDiv.getBtn().addEventListener("click", () => loadingController(SearchDiv.g
 async function loadingController (obj) {
     const data = await getWeather(obj);
     const obtained = new GetData(data);
+    console.log(obtained.getTemp())
 }
 
 class GetData {
@@ -24,5 +25,13 @@ class GetData {
         const displayDate = format(new Date(), "do MMMM, yyyy")
         const description = this.data.description;
         return { title, subTitle, displayDate, description }
+    }
+    getTemp () {
+        const currTemp = this.data.currentConditions.temp;
+        const maxTemp = this.data.days[0].tempmax;
+        const minTemp = this.data.days[0].tempmin;
+        const currFeel = this.data.currentConditions.feelslike;
+
+        return { currTemp, maxTemp, minTemp, currFeel}
     }
 }

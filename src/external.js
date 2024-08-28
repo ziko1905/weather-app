@@ -19,3 +19,5 @@ export function getWeather(place) {
         })
     })
 }
+
+console.log(getWeather())
