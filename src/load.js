@@ -115,8 +115,9 @@ class TopSection {
         buttonsDiv.className = "buttons-div";
         celsiusBtn.className = "celsius-btn";
         celsiusBtn.textContent = "\u2103";
-        fahrenheitBtn.className = "fahrenheitBtn";
+        fahrenheitBtn.className = "fahrenheit-btn";
         fahrenheitBtn.textContent = "\u2109";
+        fahrenheitBtn.classList.add("act");
 
         buttonsDiv.appendChild(celsiusBtn);
         buttonsDiv.appendChild(fahrenheitBtn);

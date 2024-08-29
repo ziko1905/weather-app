@@ -49,9 +49,21 @@ h1.title {
 }
 
 .search-div {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  align-content: end;
   gap: 20px;
   margin-top: 5vh;
+}
+.search-div.small {
+  margin-top: 0;
+}
+
+.search-div input {
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.534);
+  padding-left: 10px;
 }
 
 .search-btn {
@@ -71,7 +83,7 @@ div.content {
   z-index: 1;
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: 1fr 6fr 4fr;
   align-items: center;
   gap: 0 30px;
 
@@ -154,6 +166,7 @@ div.content {
   background-color: rgba(114, 192, 255, 0.404);
   padding: 20px;
   font-weight: 700;
+  box-shadow: 0 0 20px -3px black;
 }
 
 .upc-days .weather-card .week-day {
@@ -170,4 +183,39 @@ div.content {
   justify-self: center;
   align-self: end;
   font-size: 1.2rem;
+}
+
+.top {
+  grid-column: 1 / -1;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 100px;
+  align-self: end;
+}
+
+.top .buttons-div {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: end;
+  border-radius: 10px;
+}
+
+.top .buttons-div button {
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 5px solid rgb(180, 180, 180);
+  padding: 10px 20px;
+}
+
+.top .buttons-div button.act {
+  border: none;
+}
+
+.top .buttons-div button.celsius-btn {
+  border-radius: 10px 0 0 10px;
+}
+
+.top .buttons-div button.fahrenheit-btn {
+  border-radius: 0 10px 10px 0;
 }
