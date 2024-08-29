@@ -48,12 +48,14 @@ export function loadWeather (theme, titleData, tempData, daysData) {
     const themeImg = document.createElement("img");
     const content = document.createElement("div");
     const title = new Title(titleData.title, titleData.subTitle, titleData.displayDate, titleData.description);
+    const temp = new Temp(tempData.currTemp, tempData.currMaxTemp, tempData.currMinTemp, tempData.currFeel)
 
     themeImg.src = THEMES_LIST[theme].getUrl()
     themeImg.className = "bg";
     content.className = "content"
 
     content.appendChild(title.elem);
+    content.appendChild(temp.elem);
     document.body.appendChild(themeImg);
     document.body.appendChild(content);
 }
@@ -115,7 +117,35 @@ class Title {
         this.div.appendChild(descElem);
         this.div.className = "title-div"
     }
-    get elem() {
+    get elem () {
+        return this.div
+    }
+}
+
+class Temp {
+    constructor (currTemp, currMaxTemp, currMinTemp, currFeel) {
+        this.div = document.createElement("div");
+        const mainTemp = document.createElement("p");
+        const minMaxTemp = document.createElement("p");
+        const feelDesc = document.createElement("p");
+        const feelTemp = document.createElement("p");
+
+        mainTemp.className = "curr-temp";
+        mainTemp.textContent = `${currTemp} \u00B0`
+        minMaxTemp.className = "curr-min-max-temp";
+        minMaxTemp.textContent = `${currMaxTemp} \u00B0 / ${currMinTemp} \u00B0`
+        feelDesc.className = "feel-temp-desc";
+        feelDesc.textContent = "Feels like: "
+        feelTemp.className = "curr-feel-temp";
+        feelTemp.textContent = `${currFeel} \u00B0`
+
+        this.div.appendChild(mainTemp);
+        this.div.appendChild(minMaxTemp);
+        this.div.appendChild(feelDesc);
+        this.div.appendChild(feelTemp);
+        this.div.className = "temps-div";
+    }
+    get elem () {
         return this.div
     }
 }
