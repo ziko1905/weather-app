@@ -68,19 +68,23 @@ export const SearchDiv = (function() {
     const searchDiv = document.createElement("div");
     const searchInput = document.createElement("input");
     const searchButton = document.createElement("button");
+    const searchError = document.createElement("span");
     function load() {
         searchDiv.className = "search-div";
         searchInput.className = "search-inp";
         searchButton.className = "search-btn";
         searchButton.textContent = "Get weather";
+        searchError.className = "error-msg";
 
         searchDiv.appendChild(searchInput);
         searchDiv.appendChild(searchButton);
+        searchDiv.appendChild(searchError);
     }
 
     function loadSmall (elem) {
         searchDiv.classList.add("small")
         searchDiv.style.fontSize = "1rem";
+        searchError.textContent = "";
         elem.appendChild(searchDiv);
     }
     function loadLarge (elem) {

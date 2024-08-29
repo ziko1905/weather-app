@@ -4,18 +4,24 @@ import { loadWeather, SearchDiv } from "./load.js"
 import { format } from "date-fns";
 
 const NEXT_DAYS_NUM = 6;
+let lastSearch;
 
 SearchDiv.getInput().addEventListener("keypress", (e) => {
     if (e.key === "Enter") loadingController(SearchDiv.getInputValue())
 })
 SearchDiv.getBtn().addEventListener("click", () => loadingController(SearchDiv.getInputValue()))
 
-async function loadingController (obj) {
-    const data = await getWeather(obj, GetMetric.getAddUrl());
-    const obtained = new GetData(data);
-    console.log(GetMetric.getAddUrl(), GetMetric.getSign())
-    loadWeather(GetMetric.getSign(), obtained.getTheme(), obtained.getMain(), obtained.getTemp(), obtained.getDays(NEXT_DAYS_NUM));
-    assignButtons()
+async function loadingController (search) {
+    if (search === null) search = lastSearch;
+    else lastSearch = search;
+    if (!search) checkSearch(search)
+    else {
+        const data = await getWeather(search, GetMetric.getAddUrl());
+        const obtained = new GetData(data);
+        console.log(GetMetric.getAddUrl(), GetMetric.getSign())
+        loadWeather(GetMetric.getSign(), obtained.getTheme(), obtained.getMain(), obtained.getTemp(), obtained.getDays(NEXT_DAYS_NUM));
+        assignButtons()
+    }
 }
 
 class GetData {
@@ -64,6 +70,15 @@ class GetData {
     }
 }
 
+export function checkSearch(error) {
+    const errorSpan = document.querySelector(".search-div .error-msg");
+    if (error == "") {
+        errorSpan.textContent = "Please enter city name!"
+    } else {
+        errorSpan.textContent = "Enter valid city name!"
+    }
+}
+
 function assignButtons() {
     const celsiusBtn = document.querySelector(".celsius-btn");
     const fahrenheitBtn = document.querySelector(".fahrenheit-btn");
@@ -76,7 +91,7 @@ function checkState(element, callback, metricObj) {
     if (!element.classList.contains("act"))
         for (let n of document.querySelectorAll(".buttons-div button")) n.classList.remove("act")
         callback(metricObj)
-        loadingController()
+        loadingController(null)
 }
 
 class Metric {
