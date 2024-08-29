@@ -56,8 +56,8 @@ class GetData {
 
         const dayOfWeek = format(dayDate, "E");
         const icon = this.data.days[index].icon;
-        const maxTemp = this.data.days[0].tempmax;
-        const minTemp = this.data.days[0].tempmin;
+        const maxTemp = this.data.days[index].tempmax;
+        const minTemp = this.data.days[index].tempmin;
 
         return { dayOfWeek, icon, maxTemp, minTemp}
     }
