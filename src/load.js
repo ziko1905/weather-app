@@ -155,6 +155,7 @@ class Temp {
 class Cards {
     constructor (daysData) {
         this.div = document.createElement("div");
+        this.div.className = "upc-days";
         for (let n of daysData) this.div.appendChild(createCard(n.dayOfWeek, n.icon, n.minTemp, n.maxTemp))
     }
     get elem () {

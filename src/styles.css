@@ -135,3 +135,39 @@ div.content {
   font-size: 1.7rem;
   justify-self: center;
 }
+
+.upc-days {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(100px, 200px);
+  grid-row: 3;
+  grid-column: 1 / -1;
+  align-self: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.upc-days .weather-card {
+  display: grid;
+  gap: 10px;
+
+  background-color: rgba(114, 192, 255, 0.404);
+  padding: 20px;
+  font-weight: 700;
+}
+
+.upc-days .weather-card .week-day {
+  background-color: rgba(0, 0, 0, 0.384);
+  padding: 0px 20px;
+  align-self: start;
+}
+
+.upc-days .weather-card .weather-icon {
+  padding: 15px;
+}
+
+.upc-days .weather-card .card-min-max {
+  justify-self: center;
+  align-self: end;
+  font-size: 1.2rem;
+}
