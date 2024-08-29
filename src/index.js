@@ -3,7 +3,7 @@ import { getWeather } from "./external";
 import { loadWeather, SearchDiv } from "./load.js"
 import { format } from "date-fns";
 
-const NEXT_DAYS_NUM = 5;
+const NEXT_DAYS_NUM = 6;
 
 SearchDiv.getInput().addEventListener("keypress", (e) => {
     if (e.key === "Enter") loadingController(SearchDiv.getInputValue())

@@ -47,6 +47,7 @@ export function loadWeather (theme, titleData, tempData, daysData) {
     document.body.textContent = "";
     const themeImg = document.createElement("img");
     const content = document.createElement("div");
+    const top = new TopSection()
     const title = new Title(titleData.title, titleData.subTitle, titleData.displayDate, titleData.description);
     const temp = new Temp(tempData.currTemp, tempData.currMaxTemp, tempData.currMinTemp, tempData.currFeel)
     const days = new Cards(daysData);
@@ -55,6 +56,7 @@ export function loadWeather (theme, titleData, tempData, daysData) {
     themeImg.className = "bg";
     content.className = "content"
 
+    content.appendChild(top.elem)
     content.appendChild(title.elem);
     content.appendChild(temp.elem);
     content.appendChild(days.elem);
@@ -77,11 +79,12 @@ export const SearchDiv = (function() {
     }
 
     function loadSmall (elem) {
-        console.log(searchDiv)
+        searchDiv.classList.add("small")
         searchDiv.style.fontSize = "1rem";
         elem.appendChild(searchDiv);
     }
     function loadLarge (elem) {
+        searchDiv.className = "search-div";
         const div = searchDiv
         div.style.fontSize = "2rem";
         elem.appendChild(div);
@@ -99,6 +102,30 @@ export const SearchDiv = (function() {
 
     return { loadSmall, loadLarge, getBtn, getInput, getInputValue }
 })()
+
+class TopSection {
+    constructor () {
+        this.div = document.createElement("div");
+        const buttonsDiv = document.createElement("div");
+        const celsiusBtn = document.createElement("button");
+        const fahrenheitBtn = document.createElement("button");
+        SearchDiv.loadSmall(this.div);
+
+        this.div.className = "top";
+        buttonsDiv.className = "buttons-div";
+        celsiusBtn.className = "celsius-btn";
+        celsiusBtn.textContent = "\u2103";
+        fahrenheitBtn.className = "fahrenheitBtn";
+        fahrenheitBtn.textContent = "\u2109";
+
+        buttonsDiv.appendChild(celsiusBtn);
+        buttonsDiv.appendChild(fahrenheitBtn);
+        this.div.appendChild(buttonsDiv);
+    }
+    get elem () {
+        return this.div
+    }
+}
 
 class Title {
     constructor (title, subTitle, date, desc) {
