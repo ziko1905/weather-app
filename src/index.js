@@ -13,15 +13,13 @@ SearchDiv.getBtn().addEventListener("click", () => loadingController(SearchDiv.g
 
 async function loadingController (search) {
     if (search === null) search = lastSearch;
-    else lastSearch = search;
-    if (!search) checkSearch(search)
-    else {
-        const data = await getWeather(search, GetMetric.getAddUrl());
-        const obtained = new GetData(data);
-        console.log(GetMetric.getAddUrl(), GetMetric.getSign())
-        loadWeather(GetMetric.getSign(), obtained.getTheme(), obtained.getMain(), obtained.getTemp(), obtained.getDays(NEXT_DAYS_NUM));
-        assignButtons()
-    }
+    else if (!search) checkSearch(search)
+    const data = await getWeather(search, GetMetric.getAddUrl());
+    lastSearch = search;
+    const obtained = new GetData(data);
+    console.log(GetMetric.getAddUrl(), GetMetric.getSign())
+    loadWeather(GetMetric.getSign(), obtained.getTheme(), obtained.getMain(), obtained.getTemp(), obtained.getDays(NEXT_DAYS_NUM));
+    assignButtons()
 }
 
 class GetData {
