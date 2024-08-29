@@ -49,6 +49,7 @@ export function loadWeather (theme, titleData, tempData, daysData) {
     const content = document.createElement("div");
     const title = new Title(titleData.title, titleData.subTitle, titleData.displayDate, titleData.description);
     const temp = new Temp(tempData.currTemp, tempData.currMaxTemp, tempData.currMinTemp, tempData.currFeel)
+    const days = new Cards(daysData);
 
     themeImg.src = THEMES_LIST[theme].getUrl()
     themeImg.className = "bg";
@@ -56,6 +57,7 @@ export function loadWeather (theme, titleData, tempData, daysData) {
 
     content.appendChild(title.elem);
     content.appendChild(temp.elem);
+    content.appendChild(days.elem);
     document.body.appendChild(themeImg);
     document.body.appendChild(content);
 }
@@ -150,5 +152,36 @@ class Temp {
     }
 }
 
+class Cards {
+    constructor (daysData) {
+        this.div = document.createElement("div");
+        for (let n of daysData) this.div.appendChild(createCard(n.dayOfWeek, n.icon, n.minTemp, n.maxTemp))
+    }
+    get elem () {
+        return this.div
+    }
+}
+
+function createCard (dayOfWeek, cardIcon, minTemp, maxTemp) {
+    const card = document.createElement("div");
+    const weekDay = document.createElement("p");
+    const icon = document.createElement("img");
+    const iconSrc = require(`../media/icons/${cardIcon}.svg`)
+    const minMaxTemp = document.createElement("p");
+
+    card.className = "weather-card";
+    weekDay.className = "week-day";
+    weekDay.textContent = `${dayOfWeek}`;
+    icon.className = "weather-icon";
+    icon.src = iconSrc;
+    minMaxTemp.textContent = `${maxTemp}\u00B0 / ${minTemp}\u00B0`;
+    minMaxTemp.className = "card-min-max";
+
+    card.appendChild(weekDay);
+    card.appendChild(icon);
+    card.appendChild(minMaxTemp);
+
+    return card
+}
 
 loadDefault()
