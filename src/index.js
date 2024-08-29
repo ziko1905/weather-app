@@ -11,9 +11,11 @@ SearchDiv.getInput().addEventListener("keypress", (e) => {
 SearchDiv.getBtn().addEventListener("click", () => loadingController(SearchDiv.getInputValue()))
 
 async function loadingController (obj) {
-    const data = await getWeather(obj);
+    const data = await getWeather(obj, GetMetric.getAddUrl());
     const obtained = new GetData(data);
-    loadWeather(obtained.getTheme(), obtained.getMain(), obtained.getTemp(), obtained.getDays(NEXT_DAYS_NUM));
+    console.log(GetMetric.getAddUrl(), GetMetric.getSign())
+    loadWeather(GetMetric.getSign(), obtained.getTheme(), obtained.getMain(), obtained.getTemp(), obtained.getDays(NEXT_DAYS_NUM));
+    assignButtons()
 }
 
 class GetData {
@@ -61,3 +63,52 @@ class GetData {
         return daysList
     }
 }
+
+function assignButtons() {
+    const celsiusBtn = document.querySelector(".celsius-btn");
+    const fahrenheitBtn = document.querySelector(".fahrenheit-btn");
+
+    celsiusBtn.addEventListener("click", (e) => checkState(e.target, GetMetric.change, new Celsius))
+    fahrenheitBtn.addEventListener("click", (e) => checkState(e.target, GetMetric.change, new Fahrenheit))
+}
+
+function checkState(element, callback, metricObj) {
+    if (!element.classList.contains("act"))
+        for (let n of document.querySelectorAll(".buttons-div button")) n.classList.remove("act")
+        callback(metricObj)
+        loadingController()
+}
+
+class Metric {
+    constructor (add, sign) {
+        this.add = add
+        this.sign = sign
+    }
+}
+
+class Celsius extends Metric {
+    constructor () {
+        super("&unitGroup=metric", "\u2103")
+    }
+}
+
+class Fahrenheit extends Metric {
+    constructor () {
+        super("", "\u2109")
+    }
+}
+
+const GetMetric = (function () {
+    let obj = new Fahrenheit;
+    function change (newObj) {
+        obj = newObj
+    }
+    function getSign () {
+        return obj.sign
+    }
+    function getAddUrl () {
+        return obj.add
+    }
+
+    return { change, getSign, getAddUrl }
+})()

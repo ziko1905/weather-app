@@ -43,13 +43,13 @@ export function loadDefault () {
     document.body.appendChild(main);
 }
 
-export function loadWeather (theme, titleData, tempData, daysData) {
+export function loadWeather (sign, theme, titleData, tempData, daysData) {
     document.body.textContent = "";
     const themeImg = document.createElement("img");
     const content = document.createElement("div");
-    const top = new TopSection()
+    const top = new TopSection(sign)
     const title = new Title(titleData.title, titleData.subTitle, titleData.displayDate, titleData.description);
-    const temp = new Temp(tempData.currTemp, tempData.currMaxTemp, tempData.currMinTemp, tempData.currFeel)
+    const temp = new Temp(sign, tempData.currTemp, tempData.currMaxTemp, tempData.currMinTemp, tempData.currFeel)
     const days = new Cards(daysData);
 
     themeImg.src = THEMES_LIST[theme].getUrl()
@@ -104,7 +104,7 @@ export const SearchDiv = (function() {
 })()
 
 class TopSection {
-    constructor () {
+    constructor (sign) {
         this.div = document.createElement("div");
         const buttonsDiv = document.createElement("div");
         const celsiusBtn = document.createElement("button");
@@ -117,7 +117,8 @@ class TopSection {
         celsiusBtn.textContent = "\u2103";
         fahrenheitBtn.className = "fahrenheit-btn";
         fahrenheitBtn.textContent = "\u2109";
-        fahrenheitBtn.classList.add("act");
+        if (sign === "\u2109") fahrenheitBtn.classList.add("act")
+        else if (sign === "\u2103") celsiusBtn.classList.add("act")
 
         buttonsDiv.appendChild(celsiusBtn);
         buttonsDiv.appendChild(fahrenheitBtn);
@@ -153,7 +154,7 @@ class Title {
 }
 
 class Temp {
-    constructor (currTemp, currMaxTemp, currMinTemp, currFeel) {
+    constructor (sign, currTemp, currMaxTemp, currMinTemp, currFeel) {
         this.div = document.createElement("div");
         const mainTemp = document.createElement("p");
         const minMaxTemp = document.createElement("p");
@@ -161,13 +162,13 @@ class Temp {
         const feelTemp = document.createElement("p");
 
         mainTemp.className = "curr-temp";
-        mainTemp.textContent = `${currTemp}\u00B0`
+        mainTemp.textContent = `${currTemp}${sign}`
         minMaxTemp.className = "curr-min-max-temp";
         minMaxTemp.textContent = `${currMaxTemp}\u00B0 / ${currMinTemp}\u00B0`
         feelDesc.className = "feel-temp-desc";
         feelDesc.textContent = "Feels like: "
         feelTemp.className = "curr-feel-temp";
-        feelTemp.textContent = `${currFeel}\u00B0`
+        feelTemp.textContent = `${currFeel}${sign}`
 
         this.div.appendChild(mainTemp);
         this.div.appendChild(minMaxTemp);
