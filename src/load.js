@@ -131,13 +131,13 @@ class Temp {
         const feelTemp = document.createElement("p");
 
         mainTemp.className = "curr-temp";
-        mainTemp.textContent = `${currTemp} \u00B0`
+        mainTemp.textContent = `${currTemp}\u00B0`
         minMaxTemp.className = "curr-min-max-temp";
-        minMaxTemp.textContent = `${currMaxTemp} \u00B0 / ${currMinTemp} \u00B0`
+        minMaxTemp.textContent = `${currMaxTemp}\u00B0 / ${currMinTemp}\u00B0`
         feelDesc.className = "feel-temp-desc";
         feelDesc.textContent = "Feels like: "
         feelTemp.className = "curr-feel-temp";
-        feelTemp.textContent = `${currFeel} \u00B0`
+        feelTemp.textContent = `${currFeel}\u00B0`
 
         this.div.appendChild(mainTemp);
         this.div.appendChild(minMaxTemp);
