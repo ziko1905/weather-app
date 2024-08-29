@@ -49,9 +49,10 @@ h1.title {
 }
 
 .search-div {
+  position: relative;
   display: grid;
   grid-auto-flow: column;
-  align-content: end;
+  align-self: end;
   gap: 20px;
   margin-top: 5vh;
 }
@@ -64,6 +65,17 @@ h1.title {
   border: none;
   background-color: rgba(255, 255, 255, 0.534);
   padding-left: 10px;
+}
+
+.search-div .error-msg {
+  position: absolute;
+  bottom: 105%;
+  border-radius: 10px;
+  border: 2px solid;
+  color: brown;
+  background-color: rgba(255, 255, 255, 0.534);
+  padding-left: 10px;
+  font-size: 0.7em;
 }
 
 .search-btn {

@@ -21,5 +21,3 @@ export function getWeather(place, add) {
         })
     })
 }
-
-console.log(getWeather())
