@@ -85,6 +85,7 @@ export const SearchDiv = (function() {
         searchDiv.classList.add("small")
         searchDiv.style.fontSize = "1rem";
         searchError.textContent = "";
+        searchError.style.display = "none";
         elem.appendChild(searchDiv);
     }
     function loadLarge (elem) {

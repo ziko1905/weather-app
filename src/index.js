@@ -73,9 +73,11 @@ class GetData {
 export function checkSearch(error) {
     const errorSpan = document.querySelector(".search-div .error-msg");
     if (error == "") {
-        errorSpan.textContent = "Please enter city name!"
+        errorSpan.textContent = "Please enter city name!";
+        errorSpan.style.display = "block";
     } else {
-        errorSpan.textContent = "Enter valid city name!"
+        errorSpan.textContent = "Enter valid city name!";
+        errorSpan.style.display = "block";
     }
 }
 

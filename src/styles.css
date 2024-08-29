@@ -68,13 +68,14 @@ h1.title {
 }
 
 .search-div .error-msg {
+  display: none;
   position: absolute;
   bottom: 105%;
   border-radius: 10px;
   border: 2px solid;
   color: brown;
   background-color: rgba(255, 255, 255, 0.534);
-  padding-left: 10px;
+  padding: 0 10px;
   font-size: 0.7em;
 }
 
