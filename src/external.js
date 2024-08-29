@@ -1,6 +1,5 @@
 // Import only needed during development
 import { checkSearch } from "."
-import jsonSrc from "./zagreb.json"
 
 export function getWeather(place, add) {
     return new Promise(function(resolve) {
@@ -14,7 +13,7 @@ export function getWeather(place, add) {
     // Commented to not ask to many GET requests during development
     // Instead use json:
     return new Promise(function(resolve) {
-        fetch(jsonSrc)
+        fetch(require("./zagreb.json"))
         .then(data => data.json())
         .then(response => {
             resolve(response)
